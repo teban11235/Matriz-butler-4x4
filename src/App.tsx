@@ -53,13 +53,13 @@ type PortSelectorProps = {
 
 function PortSelector({ selectedPort, onSelect, scenarioActive, measurementActive, compact = false }: PortSelectorProps) {
   return (
-    <section className={`rounded-xl border border-slate-800 bg-slate-900/80 ${compact ? 'p-3' : 'p-4 sm:p-5'}`}>
+    <section className={`rounded-xl border border-slate-300 bg-white ${compact ? 'p-3 sm:p-4' : 'p-4 sm:p-5'}`}>
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-cyan-400">Control de excitación</div>
-          <h2 className="text-sm font-bold text-slate-100">Seleccione el puerto de alimentación</h2>
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-cyan-700">Control de excitación</div>
+          <h2 className="text-base font-bold text-slate-900">Seleccione el puerto de alimentación</h2>
         </div>
-        <p className="max-w-xl text-[11px] leading-relaxed text-slate-400">
+        <p className="max-w-2xl text-sm leading-relaxed text-slate-600">
           P1–P4 selecciona estados discretos de fase. Al elegir un puerto se vuelve al modelo Butler ideal.
         </p>
       </div>
@@ -72,16 +72,16 @@ function PortSelector({ selectedPort, onSelect, scenarioActive, measurementActiv
               key={p}
               type="button"
               onClick={() => onSelect(p)}
-              className={`min-h-14 rounded-lg border-2 bg-slate-950/60 px-3 py-2 text-left transition ${
+              className={`min-h-16 rounded-lg border-2 bg-white px-4 py-3 text-left transition shadow-sm ${
                 isActive ? 'ring-1 ring-white/30' : 'hover:border-slate-600'
               }`}
               style={{ borderColor: isActive ? cfg.beamColor : '#1e293b' }}
             >
               <div className="flex items-center justify-between gap-2">
                 <span className="text-lg font-black" style={{ color: cfg.beamColor }}>{p}</span>
-                <span className="text-[10px] font-mono text-slate-400">β={cfg.betaDeg > 0 ? '+' : ''}{cfg.betaDeg}°</span>
+                <span className="text-sm font-mono text-slate-600">β={cfg.betaDeg > 0 ? '+' : ''}{cfg.betaDeg}°</span>
               </div>
-              <div className="mt-1 text-[10px] text-slate-500">θAF≈{cfg.theoreticalThetaDeg > 0 ? '+' : ''}{cfg.theoreticalThetaDeg.toFixed(1)}°</div>
+              <div className="mt-1 text-sm font-medium text-slate-600">θAF≈{cfg.theoreticalThetaDeg > 0 ? '+' : ''}{cfg.theoreticalThetaDeg.toFixed(1)}°</div>
             </button>
           );
         })}
@@ -229,23 +229,23 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-slate-100 lg:h-screen lg:overflow-hidden">
-      <header className="z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur lg:h-[74px]">
+    <div className="min-h-screen bg-slate-100 font-sans text-slate-900 lg:h-screen lg:overflow-hidden">
+      <header className="z-50 border-b border-slate-200 bg-white/95 backdrop-blur lg:h-[76px] shadow-sm">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col gap-2 px-3 py-2 sm:px-4 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
           <div className="flex min-w-0 items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-2">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-cyan-600 bg-cyan-950">
-                <Radio className="h-4 w-4 text-cyan-300" />
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-300 bg-cyan-50">
+                <Radio className="h-5 w-5 text-cyan-700" />
               </div>
               <div className="min-w-0">
-                <div className="truncate text-sm font-bold sm:text-base">Matriz Butler 4×4 & Arreglo Lineal</div>
-                <div className="truncate font-mono text-[9px] text-slate-400 sm:text-[10px]">Beamforming interactivo · 2.45 GHz</div>
+                <div className="truncate text-base font-extrabold sm:text-lg text-slate-900">Matriz Butler 4×4 & Arreglo Lineal</div>
+                <div className="truncate font-mono text-xs text-slate-500">Beamforming interactivo · 2.45 GHz</div>
               </div>
             </div>
             <button
               type="button"
               onClick={reset}
-              className="flex h-9 shrink-0 items-center gap-1 rounded-lg border border-slate-700 bg-slate-900 px-2.5 text-xs text-slate-300 lg:hidden"
+              className="flex h-9 shrink-0 items-center gap-1 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-700 lg:hidden"
               aria-label="Reiniciar simulación"
             >
               <RotateCcw className="h-4 w-4" />
@@ -254,7 +254,7 @@ export default function App() {
           </div>
 
           <div className="min-w-0 flex-1 overflow-x-auto pb-1 lg:pb-0">
-            <nav className="flex min-w-max items-center gap-1 text-xs lg:justify-center" aria-label="Secciones del recurso">
+            <nav className="flex min-w-max items-center gap-1.5 text-sm lg:justify-center" aria-label="Secciones del recurso">
               {nav.map(([id, label, icon]) => (
                 <button
                   key={id}
@@ -262,8 +262,8 @@ export default function App() {
                   onClick={() => setActiveTab(id)}
                   className={`flex min-h-9 shrink-0 items-center gap-1.5 rounded-md border px-3 py-1.5 transition ${
                     activeTab === id
-                      ? 'border-cyan-500/50 bg-cyan-950/50 text-cyan-300'
-                      : 'border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                      ? 'border-cyan-500 bg-cyan-50 text-cyan-800 shadow-sm'
+                      : 'border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900'
                   }`}
                 >
                   {icon}{label}
@@ -275,7 +275,7 @@ export default function App() {
           <button
             type="button"
             onClick={reset}
-            className="hidden h-9 shrink-0 items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-3 text-xs text-slate-300 hover:border-slate-600 lg:flex"
+            className="hidden h-9 shrink-0 items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-700 hover:border-slate-600 lg:flex"
           >
             <RotateCcw className="h-4 w-4" /> Reiniciar
           </button>
@@ -334,7 +334,7 @@ export default function App() {
             <div className="space-y-3 sm:space-y-4">
               <PortSelector selectedPort={selectedPort} onSelect={selectPort} scenarioActive={!!scenario} measurementActive={!!measurement} compact />
               {dataPanel}
-              <div className="grid min-w-0 gap-3 2xl:grid-cols-2">
+              <div className="grid min-w-0 items-start gap-4 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
                 <div className="min-w-0"><AntennaArrayVisualizer selectedPort={selectedPort} phasesDeg={effectivePhases} amplitudes={effectiveAmplitudes} dMm={separationMm} dOverLambda={effectiveDOverLambda} thetaAfDeg={thetaAf} thetaTotalDeg={totalMetrics.peakThetaDeg} /></div>
                 <div className="min-w-0">{sharedPlot}</div>
               </div>
@@ -353,7 +353,7 @@ export default function App() {
           )}
 
           {activeTab === 'theory' && (
-            <div className="grid min-w-0 gap-3 xl:grid-cols-[minmax(0,1.15fr)_minmax(360px,.85fr)]">
+            <div className="space-y-4">
               <div className="min-w-0"><ButlerDiagramSVG selectedPort={selectedPort} onSelectPort={selectPort} phasesDeg={effectivePhases} amplitudes={effectiveAmplitudes} /></div>
               <div className="min-w-0"><ButlerBlocksInfo /></div>
             </div>
