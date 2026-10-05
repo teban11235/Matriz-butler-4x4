@@ -231,7 +231,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-100 font-sans text-slate-900 lg:h-screen lg:overflow-hidden">
       <header className="z-50 border-b border-slate-200 bg-white/95 backdrop-blur lg:h-[76px] shadow-sm">
-        <div className="mx-auto flex h-full max-w-[1600px] flex-col gap-2 px-3 py-2 sm:px-4 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
+        <div className="mx-auto flex h-full max-w-[1840px] flex-col gap-2 px-3 py-2 sm:px-4 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
           <div className="flex min-w-0 items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-2">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cyan-300 bg-cyan-50">
@@ -282,7 +282,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-[1600px] p-2 sm:p-4 lg:h-[calc(100vh-74px)] lg:overflow-hidden">
+      <main className="mx-auto max-w-[1840px] p-2 sm:p-4 lg:h-[calc(100vh-74px)] lg:overflow-hidden">
         <div className="h-full min-h-0 lg:overflow-y-auto lg:pr-1">
           {activeTab === 'simulator' && (
             <div className="space-y-3 sm:space-y-4">
@@ -334,21 +334,23 @@ export default function App() {
             <div className="space-y-3 sm:space-y-4">
               <PortSelector selectedPort={selectedPort} onSelect={selectPort} scenarioActive={!!scenario} measurementActive={!!measurement} compact />
               {dataPanel}
-              <div className="grid min-w-0 items-start gap-4 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-                <div className="min-w-0"><AntennaArrayVisualizer selectedPort={selectedPort} phasesDeg={effectivePhases} amplitudes={effectiveAmplitudes} dMm={separationMm} dOverLambda={effectiveDOverLambda} thetaAfDeg={thetaAf} thetaTotalDeg={totalMetrics.peakThetaDeg} /></div>
+              <div className="grid min-w-0 items-start gap-4 xl:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)]">
+                <div className="min-w-0 space-y-4">
+                  <AntennaArrayVisualizer selectedPort={selectedPort} phasesDeg={effectivePhases} amplitudes={effectiveAmplitudes} dMm={separationMm} dOverLambda={effectiveDOverLambda} thetaAfDeg={thetaAf} thetaTotalDeg={totalMetrics.peakThetaDeg} />
+                  <InterferenceExplanation frequencyGhz={params.frequencyGhz} dOverLambda={effectiveDOverLambda} amplitudes={effectiveAmplitudes} phasesDeg={effectivePhases} betaDeg={effectiveBeta} thetaAfDeg={thetaAf} />
+                </div>
                 <div className="min-w-0">{sharedPlot}</div>
               </div>
-              <InterferenceExplanation frequencyGhz={params.frequencyGhz} dOverLambda={effectiveDOverLambda} amplitudes={effectiveAmplitudes} phasesDeg={effectivePhases} betaDeg={effectiveBeta} thetaAfDeg={thetaAf} />
             </div>
           )}
 
           {activeTab === 'guided' && (
-            <div className="space-y-3 sm:space-y-4">
-              <StepByStepGuide currentPort={selectedPort} onSelectPort={selectPort} onApplyScenario={setScenario} />
-              <div className="grid min-w-0 gap-3 2xl:grid-cols-2">
-                <div className="min-w-0"><AntennaArrayVisualizer selectedPort={selectedPort} phasesDeg={effectivePhases} amplitudes={effectiveAmplitudes} dMm={separationMm} dOverLambda={effectiveDOverLambda} thetaAfDeg={thetaAf} thetaTotalDeg={totalMetrics.peakThetaDeg} /></div>
-                <div className="min-w-0">{sharedPlot}</div>
+            <div className="grid min-w-0 items-start gap-4 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+              <div className="min-w-0 space-y-4">
+                <StepByStepGuide currentPort={selectedPort} onSelectPort={selectPort} onApplyScenario={setScenario} />
+                <AntennaArrayVisualizer selectedPort={selectedPort} phasesDeg={effectivePhases} amplitudes={effectiveAmplitudes} dMm={separationMm} dOverLambda={effectiveDOverLambda} thetaAfDeg={thetaAf} thetaTotalDeg={totalMetrics.peakThetaDeg} />
               </div>
+              <div className="min-w-0">{sharedPlot}</div>
             </div>
           )}
 
@@ -362,21 +364,23 @@ export default function App() {
           {activeTab === 'advanced' && (
             <div className="space-y-3 sm:space-y-4">
               <PortSelector selectedPort={selectedPort} onSelect={selectPort} scenarioActive={!!scenario} measurementActive={!!measurement} compact />
-              <AdvancedParametersPanel params={params} onChangeParams={setParams} onResetDefaults={reset} effectiveDOverLambda={effectiveDOverLambda} gratingLobes={gratingLobes} />
-              <div className="grid min-w-0 gap-3 2xl:grid-cols-[minmax(360px,.75fr)_minmax(0,1.25fr)]">
-                <div className="min-w-0">{dataPanel}</div>
+              <div className="grid min-w-0 items-start gap-4 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+                <div className="min-w-0 space-y-4">
+                  <AdvancedParametersPanel params={params} onChangeParams={setParams} onResetDefaults={reset} effectiveDOverLambda={effectiveDOverLambda} gratingLobes={gratingLobes} />
+                  {dataPanel}
+                </div>
                 <div className="min-w-0">{sharedPlot}</div>
               </div>
             </div>
           )}
 
           {activeTab === 'measurement' && (
-            <div className="space-y-3 sm:space-y-4">
-              <MeasurementPanel onApply={applyMeasurement} />
-              <div className="grid min-w-0 gap-3 2xl:grid-cols-[minmax(360px,.75fr)_minmax(0,1.25fr)]">
-                <div className="min-w-0">{dataPanel}</div>
-                <div className="min-w-0">{sharedPlot}</div>
+            <div className="grid min-w-0 items-start gap-4 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+              <div className="min-w-0 space-y-4">
+                <MeasurementPanel onApply={applyMeasurement} />
+                {dataPanel}
               </div>
+              <div className="min-w-0">{sharedPlot}</div>
             </div>
           )}
         </div>
