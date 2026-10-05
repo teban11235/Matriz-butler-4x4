@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+html, body, #root {
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #020617;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  input[type="range"] {
+    min-height: 32px;
+  }
+}

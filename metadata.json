@@ -1,0 +1,6 @@
+{
+  "name": "Matriz Butler 4x4 y Arreglo de Antenas",
+  "description": "Simulador interactivo y pedagógico del funcionamiento de una Matriz Butler 4x4, distribución de fase y conformación de haz en un arreglo lineal de antenas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
