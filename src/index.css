@@ -8,7 +8,8 @@ html, body, #root {
 body {
   margin: 0;
   overflow-x: hidden;
-  background: #020617;
+  background: #eef3f8;
+  color: #0f172a;
 }
 
 * {
@@ -21,6 +22,63 @@ button, input, select, textarea {
 
 svg {
   max-width: 100%;
+}
+
+/* Light teaching theme: keep the existing component structure while
+   remapping the former dark-slate palette to high-contrast light surfaces. */
+[class*="bg-slate-950"] { background-color: #f8fafc !important; }
+[class*="bg-slate-900"] { background-color: #ffffff !important; }
+[class*="bg-slate-800"] { background-color: #eef2f7 !important; }
+
+[class*="text-slate-100"],
+[class*="text-slate-200"] { color: #0f172a !important; }
+[class*="text-slate-300"] { color: #334155 !important; }
+[class*="text-slate-400"] { color: #475569 !important; }
+[class*="text-slate-500"] { color: #64748b !important; }
+[class*="text-slate-600"] { color: #64748b !important; }
+
+[class*="border-slate-800"],
+[class*="border-slate-700"],
+[class*="border-slate-600"] { border-color: #cbd5e1 !important; }
+
+[class*="bg-cyan-950"] { background-color: #ecfeff !important; }
+[class*="bg-emerald-950"] { background-color: #ecfdf5 !important; }
+[class*="bg-amber-950"] { background-color: #fffbeb !important; }
+[class*="bg-rose-950"] { background-color: #fff1f2 !important; }
+
+[class*="text-cyan-300"],
+[class*="text-cyan-400"] { color: #0e7490 !important; }
+[class*="text-emerald-300"] { color: #047857 !important; }
+[class*="text-amber-300"] { color: #b45309 !important; }
+[class*="text-violet-300"] { color: #7c3aed !important; }
+[class*="text-rose-300"] { color: #be123c !important; }
+
+.shadow-xl,
+.shadow-2xl {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* The original prototype used many 10–12 px labels. Raise the minimum
+   reading size for classroom projection and typical laptop displays. */
+.text-xs {
+  font-size: 0.84rem !important;
+  line-height: 1.2rem !important;
+}
+[class*="text-[10px]"] {
+  font-size: 0.76rem !important;
+  line-height: 1.05rem !important;
+}
+[class*="text-[11px]"] {
+  font-size: 0.80rem !important;
+  line-height: 1.1rem !important;
+}
+
+input[type="number"],
+input[type="text"],
+select,
+textarea {
+  color: #0f172a !important;
+  background: #ffffff !important;
 }
 
 @media (max-width: 639px) {
